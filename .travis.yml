@@ -1,0 +1,24 @@
+language: generic
+dist: trusty
+sudo: false
+
+addons:
+    apt:
+        packages:
+          - g++-5
+          - clang-3.8
+        sources: &sources
+          - llvm-toolchain-precise-3.8
+          - ubuntu-toolchain-r-test
+
+matrix:
+    include:
+      - os: linux
+        env: COMPILER_NAME=gcc CXX=g++-5 CC=gcc-5
+      - os: linux
+        env: COMPILER_NAME=clang CXX=clang++-3.8 CC=clang-3.8
+
+before_install:
+    - pip install crater
+
+script: crater checkout && mkdir _build && cd _build && cmake .. && make && ./avakar_metapp_test
