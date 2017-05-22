@@ -21,4 +21,4 @@ matrix:
 before_install:
     - pip install crater
 
-script: crater checkout && mkdir _build && cd _build && cmake .. && make && ./avakar_metapp_test
+script: crater checkout && mkdir _build && cd _build && cmake .. && make avakar_metapp_test && ./avakar_metapp_test
